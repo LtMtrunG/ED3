@@ -1,0 +1,105 @@
+clc;
+clear all; 
+close all;
+
+% Define the circle's parameters
+center = [0.05, 0.7];
+radius = 0.1;
+num_points = 100;
+
+% Create equally spaced angles between 0 and 2*pi
+angles = linspace(0, 2*pi, num_points);
+
+% Calculate the coordinates for each angle
+for i = 1:num_points
+    x_coords(i) = center(1) + radius * cos(angles(i));
+    y_coords(i) = center(2) + radius * sin(angles(i));
+end
+
+% inputs
+t = linspace(0, 10, 101); % more s for smoother animation
+L1 = 0.2;
+L2 = 0.4;
+L3 = 0.2;
+L4 = 0.3;
+L5 = 0.3;
+L6 = 0.1;
+P.x = x_coords(1);
+P.y = y_coords(1);
+A.x = 0;
+A.y = 0;
+B.x = L6;
+B.y = 0;
+
+% animation
+figure;
+plot(x_coords, y_coords, 'r--'); % Yellow dashed line
+hold on;
+
+hBP = plot(P.x, P.y, 'yo', 'MarkerFaceColor','y');
+
+% Call the function
+D = solveD(A, P, L2, L3+L5);
+hL2 = plot([A.x D.x], [A.y D.y], 'g-', 'LineWidth', 2);
+
+E = solveE(D, P, L3);
+hL3 = plot([D.x E.x], [D.y E.y], 'c-', 'LineWidth', 2);
+
+hL5 = plot([E.x P.x], [E.y P.y], 'y-', 'LineWidth', 2);
+hL6 = plot([A.x B.x], [A.y B.y], 'b-', 'LineWidth', 2);
+
+C = solveC(B, E, L1, L4);
+disp(C);
+hL1 = plot([B.x C.x], [B.y C.y], 'r-', 'LineWidth', 2);
+hL4 = plot([C.x E.x], [C.y E.y], 'm-', 'LineWidth', 2);
+
+axis([-1 1 -1 1]);
+axis equal; % Ensure equal scaling for both axes
+set(gca, 'YDir','reverse');
+
+v = VideoWriter('video/animation1', 'MPEG-4');
+open(v);
+
+m = 1;
+mov(m) = getframe;
+
+% Calculate the coordinates for each angle
+for ii = 1:2
+for i = 1:num_points
+    P.x = x_coords(i);
+    P.y = y_coords(i);
+
+    set(hBP, 'XData', P.x);
+    set(hBP, 'YData', P.y);
+
+    D = solveD(A, P, L2, L3+L5);
+    set(hL2, 'XData', [A.x D.x]);
+    set(hL2, 'YData', [A.y D.y]);
+
+    E = solveE(D, P, L3);
+    set(hL3, 'XData', [D.x E.x]);
+    set(hL3, 'YData', [D.y E.y]);
+
+    set(hL5, 'XData', [E.x P.x]);
+    set(hL5, 'YData', [E.y P.y]);
+
+    C = solveC(B, E, L1, L4);
+    set(hL1, 'XData', [B.x real(C.x)]);
+    set(hL1, 'YData', [B.y real(C.y)]);
+    if (double(sqrt( B.x - real(C.x)^2 + (B.y - real(C.y)^2) ) ) ~= L2)
+        error("Inconsistent");
+    end;
+    
+    disp();
+    set(hL4, 'XData', [real(C.x) E.x]);
+    set(hL4, 'YData', [real(C.y) E.y]);
+
+    drawnow;
+    frame = getframe(gcf); % Capture the frame
+    writeVideo(v, frame); % Write the frame to the video
+end
+end
+
+close(v);
+
+
