@@ -4,21 +4,20 @@
 #include "MyPID.h"
 #include "MySerial.h"
 bool flag = true;
-double multiplier = 3;
+
 double input = 360; //INPUT ANGLE HERE
-double deviation = 100;
 void setup()
 {
   Init_Motor();
   Init_Encoder();
   Init_PID();
   Init_Serial();
-  th1_ref = (input * multiplier) - deviation;
+  th1_ref =  input;
 }
 
 void loop()
 {
-  Get_Angle();
+  Get_Angle(); 
   Compute_PID();
 
   if (abs(th1) >= th1_ref)
