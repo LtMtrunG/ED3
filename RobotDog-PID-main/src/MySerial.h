@@ -1,7 +1,8 @@
+//---------------------------------MySerial.h-----------------------------//
 #include <Arduino.h>
 
 unsigned long Serial_time = 0; // time in us
-double th1_ref = 3600;
+double th1_ref;
 // ====================================================================================
 void Init_Serial()
 {
@@ -12,7 +13,7 @@ void Init_Serial()
 // ====================================================================================
 void SerialDataPrint()
 {
-  if (micros() - Serial_time >= 10000)
+  if (micros() - Serial_time >= 100)
   {
     Serial_time = micros();
     // For MATLAB
@@ -55,7 +56,8 @@ void SerialDataWrite()
       {
       case 'a':
         received_chars.remove(0, 1);
-        th1_ref = received_chars.toFloat();
+        MOT1_cmd = 30;
+        th1_ref = 180;
         break;
       case 'q':
         received_chars.remove(0, 1);
