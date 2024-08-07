@@ -4,14 +4,14 @@
 #include "MyEncoder.h"
 #include "MyPID.h"
 #include "MySerial.h"
-bool flag = true;
-int count = 0;
+
 void setup()
 {
   Init_Motor();
   Init_Encoder();
   Init_PID();
   Init_Serial();
+  initSPIFFS();
 }
 
 void loop()
