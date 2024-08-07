@@ -1,7 +1,8 @@
+//---------------------------------MyMotor.h-----------------------------//
 #include <Arduino.h>
 
-#define MOT1_A 18 // MOT 1A
-#define MOT1_B 17 // MOT 1B
+#define MOT1_A 17 // MOT 1A
+#define MOT1_B 18 // MOT 1B
 
 #define MOT1_Channel 0 // MOT 1 channel
 
@@ -18,11 +19,9 @@ void Init_Motor()
     ledcSetup(MOT1_Channel, PWM_FREQ, PWM_RES);
 }
 
-void Stop_Motor()
-{
+void Kill_Motor(){
     pinMode(MOT1_A, LOW);
     pinMode(MOT1_B, LOW);
-    
 }
 //============================================================
 void Send_PWM(int PINA, int PINB, double mot_cmd, int channel)
