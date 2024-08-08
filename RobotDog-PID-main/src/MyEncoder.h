@@ -25,9 +25,5 @@ void Init_Encoder()
 
 void Get_Angle()
 {
-        // noInterrupts(); // Disable interrupts while accessing shared variable
-
     th1 = cnt1 * 360 / ENC_RES; // Conversion between encoder count and degree
-        // interrupts(); // Re-enable interrupts
-
 }

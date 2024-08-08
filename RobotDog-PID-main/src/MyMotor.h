@@ -19,10 +19,6 @@ void Init_Motor()
     ledcSetup(MOT1_Channel, PWM_FREQ, PWM_RES);
 }
 
-void Kill_Motor(){
-    pinMode(MOT1_A, LOW);
-    pinMode(MOT1_B, LOW);
-}
 //============================================================
 void Send_PWM(int PINA, int PINB, double mot_cmd, int channel)
 {

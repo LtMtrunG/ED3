@@ -3,7 +3,7 @@
 #include <PID_v1.h>
 
 extern double th1_ref; 
-double kp = 5, ki = 0.01, kd = 0.01; //official configuration for PID constants
+double kp = 8, ki = 0.01, kd = 0.01; //official configuration for PID constants
 
 // Input, output, reference
 PID MOT1_PID(&th1, &MOT1_cmd, &th1_ref, kp, ki, kd, DIRECT);

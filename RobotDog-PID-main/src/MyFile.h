@@ -1,5 +1,11 @@
 #include <SPIFFS.h>
 
+struct Angles {
+    double th1;
+    double th2;
+    double th3;
+};
+
 // Function to initialize SPIFFS
 void initSPIFFS() {
     if (!SPIFFS.begin(true)) {
@@ -10,7 +16,7 @@ void initSPIFFS() {
 }
 
 // Function to create and write to a file
-void createFile(double th1,double th2,double th3) {
+void writeFile(double th1,double th2,double th3) {
     File file = SPIFFS.open("/angles.txt", FILE_WRITE);
 
     if (!file) {
@@ -26,19 +32,24 @@ void createFile(double th1,double th2,double th3) {
 }
 
 // Function to read from a file
-void readFile() {
+Angles readFile() {
     File file = SPIFFS.open("/angles.txt", FILE_READ);
+    Angles angles = {0, 0, 0};
 
     if (!file) {
         Serial.println("Error opening file for reading!");
-        return;
+        return angles;
     }
 
-    Serial.println("File content:");
-    while (file.available()) {
-        Serial.write(file.read());
-    }
-    Serial.println();
+    Serial.println("Reading file content:");
+    String line1 = file.readStringUntil('\n');
+    String line2 = file.readStringUntil('\n');
+    String line3 = file.readStringUntil('\n');
+
+    angles.th1 = line1.toFloat();
+    angles.th2 = line2.toFloat();
+    angles.th3 = line3.toFloat();
 
     file.close();
+    return angles;
 }
