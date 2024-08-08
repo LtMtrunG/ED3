@@ -5,8 +5,8 @@
 #include <ESPmDNS.h>
 #include <WebServer.h>
 #include <ArduinoJson.h>
-const char *ssid = "Kitten";    // Change to your wifi_name
-const char *pass = "123456789"; // Password of wifi
+const char *ssid = "...";    // Change to your wifi_name
+const char *pass = "..."; // Password of wifi
 
 WebServer serverAPI(80);
 
