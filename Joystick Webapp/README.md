@@ -25,3 +25,5 @@ C:\Program Files\MATLAB\MATLAB Runtime\R2024a\toolbox\compiler\mdwas\client\sess
 <img src="https://imgur.com/8wWf8yM.png" >
 
 7. Click start your server
+8. After succesfully start your server go to your browser and type localhost:[portnumber]
+<img src="https://imgur.com/25IO3aX.png" >
