@@ -12,12 +12,22 @@ until you find matlab web server download file install
 
 Then in your matlab desgin app click on designer -> share -> web app -> open output file -> copy all the file inside there
 
-![alt text](https://imgur.com/X79ygg6)
-![alt text](https://imgur.com/JVwpinM)
-![alt text](https://imgur.com/xujIixp)
+<a href="https://imgur.com/X79ygg6">
+  <img >
+</a>
+
+<a href="https://imgur.com/JVwpinM">
+  <img >
+</a>
+
+<a href="https://imgur.com/xujIixp">
+  <img >
+</a>
+
+
 
 Finally open your MATLAB Web App Server exe , click on open app folder paste all the file there
-![alt text](https://imgur.com/8wWf8yM)
-
-
+<a href="https://imgur.com/8wWf8yM">
+  <img >
+</a>
 Then click start your server
