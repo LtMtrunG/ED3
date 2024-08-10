@@ -1,31 +1,27 @@
-#How to use
+## Clone and run locally
 
-Put the joystick.js file in this file location :
+1. Put the joystick.js file in this file location :
 C:\Program Files\MATLAB\MATLAB Runtime\R2024a\toolbox\compiler\mdwas\client\session
 
 
-If you want to run the matlab app server go into where you downloaded matlab 
+2. To download the matlab app server to deploy it , go into the file where matlab is downloaded then \toolbox\deployment
 
-\toolbox\deployment
 
-until you find matlab web server download file install
+3. Install via the matlab webapp server exe
+   
+4. Open the delta_robot file in the matlab app designer
 
-Then in your matlab desgin app click on designer -> share -> web app -> open output file -> copy all the file inside there
+5. In your matlab desgin app click on designer -> share -> web app -> open output file -> copy all the file inside there
 
 <img src="https://i.imgur.com/X79ygg6.png" >
 
-<a href="https://imgur.com/JVwpinM">
-  <img >
-</a>
+<img src="https://imgur.com/JVwpinM.png" >
 
-<a href="https://imgur.com/xujIixp">
-  <img >
-</a>
+<img src="https://imgur.com/xujIixp.png" >
 
 
+6. Open your MATLAB Web App Server exe , click on open app folder paste all the file there
 
-Finally open your MATLAB Web App Server exe , click on open app folder paste all the file there
-<a href="https://imgur.com/8wWf8yM">
-  <img >
-</a>
-Then click start your server
+<img src="https://imgur.com/8wWf8yM.png" >
+
+7. Click start your server
