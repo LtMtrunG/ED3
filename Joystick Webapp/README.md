@@ -12,9 +12,7 @@ until you find matlab web server download file install
 
 Then in your matlab desgin app click on designer -> share -> web app -> open output file -> copy all the file inside there
 
-<a href="https://imgur.com/X79ygg6">
-  <img >
-</a>
+<img src="https://i.imgur.com/X79ygg6.png" >
 
 <a href="https://imgur.com/JVwpinM">
   <img >
