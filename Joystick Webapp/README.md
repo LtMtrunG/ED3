@@ -4,7 +4,7 @@
 C:\Program Files\MATLAB\MATLAB Runtime\R2024a\toolbox\compiler\mdwas\client\session
 
 
-2. To download the matlab app server to deploy it , go into the file where matlab is downloaded then \toolbox\deployment
+2. To download the matlab app server to deploy it , go into the file  C:\Program Files\MATLAB\R2024a\toolbox\compiler\deploy\win64\MATLABWebAppServerSetup
 
 
 3. Install via the matlab webapp server exe
