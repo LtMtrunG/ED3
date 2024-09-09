@@ -1,24 +1,38 @@
-//---------------------------------MyMotor.h-----------------------------//
 #include <Arduino.h>
 
-#define MOT1_A 17 // MOT 1A
-#define MOT1_B 18 // MOT 1B
+#define MOT1_A 27 // MOT 1A
+#define MOT1_B 26 // MOT 1B
+
+#define MOT2_A 23
+#define MOT2_B 22
+
+#define MOT3_A 18
+#define MOT3_B 17
 
 #define MOT1_Channel 0 // MOT 1 channel
+#define MOT2_Channel 1 // MOT 1 channel
+#define MOT3_Channel 2 // MOT 1 channel
 
 #define PWM_FREQ 10000 // PWM Frequency: 10kHz
 #define PWM_RES 8      // PWM resolution 255
 
-double MOT1_cmd = 0; // MOT1 command [-255; 255]
+double MOT1_cmd = 10; // MOT1 command [-255; 255]
+double MOT2_cmd = 10; // MOT1 command [-255; 255]
+double MOT3_cmd = 10; // MOT1 command [-255; 255]
 
 //============================================================
 void Init_Motor()
 {
     pinMode(MOT1_A, OUTPUT);
     pinMode(MOT1_B, OUTPUT);
+    pinMode(MOT2_A, OUTPUT);
+    pinMode(MOT2_B, OUTPUT);
+    pinMode(MOT3_A, OUTPUT);
+    pinMode(MOT3_B, OUTPUT);
     ledcSetup(MOT1_Channel, PWM_FREQ, PWM_RES);
+    ledcSetup(MOT2_Channel, PWM_FREQ, PWM_RES);
+    ledcSetup(MOT3_Channel, PWM_FREQ, PWM_RES);
 }
-
 //============================================================
 void Send_PWM(int PINA, int PINB, double mot_cmd, int channel)
 {
@@ -44,4 +58,6 @@ void Send_PWM(int PINA, int PINB, double mot_cmd, int channel)
 void Run_Motor()
 {
     Send_PWM(MOT1_A, MOT1_B, MOT1_cmd, MOT1_Channel);
+    Send_PWM(MOT2_A, MOT2_B, MOT2_cmd, MOT2_Channel);
+    Send_PWM(MOT3_A, MOT3_B, MOT3_cmd, MOT3_Channel);
 }

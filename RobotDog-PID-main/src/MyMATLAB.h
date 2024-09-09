@@ -5,33 +5,30 @@
 #include <ESPmDNS.h>
 #include <WebServer.h>
 #include <ArduinoJson.h>
-const char *ssid = "...";    // Change to your wifi_name
-const char *pass = "..."; // Password of wifi
+// const char *ssid = "songngu";    // Change to your wifi_name
+// const char *pass = "0985989990"; // Password of wifi
+const char *ssid = "Kitten";    // Change to your wifi_name
+const char *pass = "123456789"; // Password of wifi
 
 WebServer serverAPI(80);
 
-struct Angles1
-{
-    double th1;
-    double th2;
-    double th3;
-};
+double th1_ref, th2_ref, th3_ref;
+const double DEFAULT_ANGLES = 25;
 
-Angles1 handleUpdate()
+void handleUpdate()
 {
     if (serverAPI.method() == HTTP_POST)
     {
         // Serial.println("Start");
         // Create a JSON document to hold the incoming data
         StaticJsonDocument<200> doc;
-        Angles1 angles = {0, 0, 0};
 
         // Deserialize the JSON data
         DeserializationError error = deserializeJson(doc, serverAPI.arg("plain"));
         if (error)
         {
             serverAPI.send(400, "text/plain", "Invalid JSON");
-            return {1000,1000,1000};
+            exit;
         }
 
         // Extract slider values
@@ -42,20 +39,17 @@ Angles1 handleUpdate()
         // Print the values to the Serial Monitor
         Serial.printf("Tha1: %.2f, Tha2: %.2f, Tha3: %.2f\n", slider1Value, slider2Value, slider3Value);
 
-        angles.th1 = slider1Value;
-        angles.th2 = slider2Value;
-        angles.th3 = slider3Value;
+        th1_ref = slider1Value + DEFAULT_ANGLES;
+        th2_ref = slider2Value + DEFAULT_ANGLES;
+        th3_ref = slider3Value + DEFAULT_ANGLES;
 
         // Respond to the client
         serverAPI.send(200, "text/plain", "Slider values received");
-        return angles;
     }
     else
     {
         serverAPI.send(405, "text/plain", "Method Not Allowed");
-        return {1000, 1000, 1000};
     }
-    return {1000, 1000, 1000};
 }
 
 void init_connection()

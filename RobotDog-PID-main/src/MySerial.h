@@ -12,7 +12,7 @@ void Init_Serial()
 {
   Serial.begin(115200);
   while (!Serial)
-  ;
+    ;
 }
 // ====================================================================================
 void SerialDataPrint()
@@ -24,31 +24,32 @@ void SerialDataPrint()
     // For MATLAB
     Serial.print(Serial_time / 10000);
     Serial.print(",");
-    Serial.print(MOT1_cmd);
-    Serial.print(",");
     Serial.print(th1_ref);
     Serial.print(",");
     Serial.print(th1);
     Serial.print(",");
-    Serial.print(cnt);
+    Serial.print(th2_ref);
     Serial.print(",");
-    Serial.print(write2File);
-    Serial.println();
+    Serial.print(th2);
+    Serial.print(",");
+    Serial.print(th3_ref);
+    Serial.print(",");
+    Serial.println(th3);
 
-    if (lastAngle == th1)
-    {
-      cnt++;
-      if (cnt > 100 && !write2File && th1 != 0)
-      {
-        writeFile(th1, 10, 10);
-        write2File = true;
-      }
-    }
-    else
-    {
-      lastAngle = th1;
-      cnt = 0;
-    }
+    // if (lastAngle == th1)
+    // {
+    //   cnt++;
+    //   if (cnt > 100 && !write2File && th1 != 0)
+    //   {
+    //     writeFile(th1, 10, 10);
+    //     write2File = true;
+    //   }
+    // }
+    // else
+    // {
+    //   lastAngle = th1;
+    //   cnt = 0;
+    // }
 
     // For Teleplot
     // Serial.println(Serial_time / 10000);
@@ -74,34 +75,40 @@ void SerialDataWrite()
   {
     char inChar = (char)Serial.read();
     received_chars += inChar;
+
     if (inChar == '\n')
     {
-      switch (received_chars[0])
+      char command = received_chars[0];
+      String valueString = received_chars.substring(0);
+      valueString.trim(); // Remove any whitespace or newline characters
+
+      switch (command)
       {
       case 'a':
-        received_chars.remove(0, 1);
         MOT1_cmd = 30;
         th1_ref = -90;
         break;
       case 'q':
-        received_chars.remove(0, 1);
-        kp = received_chars.toFloat();
+        kp = valueString.toFloat();
         break;
       case 'w':
-        received_chars.remove(0, 1);
-        ki = received_chars.toFloat();
+        ki = valueString.toFloat();
         break;
       case 'e':
-        received_chars.remove(0, 1);
-        kd = received_chars.toFloat();
+        kd = valueString.toFloat();
         break;
       case 'r':
-        readFile();
+        // readFile();
         break;
-
       default:
+        // th1_ref_recieve = valueString.toInt();
+        // Serial.print("Received number: ");
+        // execute = true;
+        // Use the number as needed
         break;
       }
+
+      // Clear the received_chars string after processing
       received_chars = "";
     }
   }

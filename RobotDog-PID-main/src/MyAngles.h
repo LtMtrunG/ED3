@@ -1,16 +1,22 @@
-double robot_angles_th1;
-double th1_input_human = 45;
-double th1_ref;
-bool first_rotation = true;
+// double th1_ref, th2_ref, th3_ref;
+// double th1_ref_recieve;
+// const double DEFAULT_ANGLES = 25;
+// bool execute = false;
 
-// void Init_Angles() {
-//    th1_ref = 0;
-//    robot_angles_th1 = readFile().th1;
+// void Init_Angles()
+// {
+//     th1_ref = 0;
+//     th2_ref = 0;
+//     th3_ref = 0;
 // }
 
-// void human2Robot() {
-//     if (first_rotation) {
-//         th1_ref = th1_input_human - th1_ref - robot_angles_th1;
-//         first_rotation
+// void calculate()
+// {
+//     if (execute)
+//     {
+//         th1_ref = th1_ref_recieve + DEFAULT_ANGLES;
+//         th2_ref = th1_ref_recieve + DEFAULT_ANGLES;
+//         th3_ref = th1_ref_recieve + DEFAULT_ANGLES;
+//         execute = false;
 //     }
 // }
