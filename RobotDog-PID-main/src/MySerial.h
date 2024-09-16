@@ -89,13 +89,13 @@ void SerialDataWrite()
       case 'a':
 
         th1_ref = 10;
-        th2_ref = 10;
-        th3_ref = 10;
+        th2_ref = 40;
+        th3_ref = 20;
         break;
       case 'q':
         th1_ref = 25;
-        th2_ref = 25;
-        th3_ref = 25;
+        th2_ref = 10;
+        th3_ref = 35;
         break;
       case 'w':
         th1_ref = 45;

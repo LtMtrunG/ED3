@@ -9,6 +9,7 @@
 // #include "soc/rtc_cntl_reg.h"
 // bool flag = false;
 unsigned long Serial_time_main = 0; // time in us
+extern bool result;
 // double cnt_main = 0;
 void setup()
 {
@@ -16,22 +17,24 @@ void setup()
   Init_Encoder();
   Init_PID();
   Init_Serial();
-  init_connection();
+ init_connection();
 }
 
-void loop()
-{
+void loop(){
+  serverAPI.handleClient();
+   if(result){
   Get_Angle();
-  if (micros() - Serial_time_main >= 1000)
-  {
-    Serial_time_main = micros();
+  // if (micros() - Serial_time_main >= 10000)
+ //{
+ //   Serial_time_main = micros();
     Compute_PID();
     Run_Motor();
-  }
+//}
+   }
+//SerialDataPrint();
 
- // SerialDataPrint();
-  SerialDataWrite();
+// SerialDataWrite();
 
-  serverAPI.handleClient();
+ 
   // calculate();
 }
