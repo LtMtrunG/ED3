@@ -36,6 +36,8 @@ void SerialDataPrint()
     Serial.print(",");
     Serial.println(th3);
     Serial.println("");
+
+
     // if (lastAngle == th1)
     // {
     //   cnt++;

@@ -18,15 +18,15 @@ PID MOT3_PID(&th3, &MOT3_cmd, &th3_ref, kpthree, kithree, kdthree, DIRECT);
 void Init_PID()
 {
   MOT1_PID.SetMode(AUTOMATIC);
-  MOT1_PID.SetOutputLimits(-30, 30);
+  MOT1_PID.SetOutputLimits(-100, 100);
   MOT1_PID.SetSampleTime(10);
 
   MOT2_PID.SetMode(AUTOMATIC);
-  MOT2_PID.SetOutputLimits(-30, 30);
+  MOT2_PID.SetOutputLimits(-100, 100);
   MOT2_PID.SetSampleTime(10);
 
   MOT3_PID.SetMode(AUTOMATIC);
-  MOT3_PID.SetOutputLimits(-30, 30);
+  MOT3_PID.SetOutputLimits(-100,100);
   MOT3_PID.SetSampleTime(10);
 }
 
